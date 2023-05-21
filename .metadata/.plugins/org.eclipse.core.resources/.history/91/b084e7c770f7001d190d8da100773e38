@@ -1,0 +1,197 @@
+package Vistas;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import Conversor.conversor_monedas;
+import Conversor.conversor_temperatura;
+
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.awt.event.ActionEvent;
+
+public class frmConversor extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					frmConversor frame = new frmConversor();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
+	};
+
+	/**
+	 * Create the frame.
+	 */
+	public frmConversor() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Conversor de monedas", "Conversor de temperatura"}));
+		comboBox.setToolTipText("");
+		comboBox.setMaximumRowCount(10);
+		comboBox.setBounds(144, 52, 165, 22);
+		contentPane.add(comboBox);
+		
+		JLabel lblNewLabel = new JLabel("VALOR:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(0, 94, 95, 30);
+		contentPane.add(lblNewLabel);
+		
+
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"USD", "EUR", "GBP", "CHF"}));
+		comboBox_2.setBounds(262, 100, 102, 22);
+		contentPane.add(comboBox_2);
+		
+		
+		// Array de tipos de temperatura
+	    String[] tiposTemperatura = {"Celsius", "Fahrenheit", "Kelvin"};
+
+	    
+		
+	    // ActionListener del JComboBox principal
+	    comboBox.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            String selectedOption = (String) comboBox.getSelectedItem();
+	            if (selectedOption.equals("Conversor de temperatura")) {
+	                comboBox_2.setModel(new DefaultComboBoxModel(tiposTemperatura));
+	            } else {
+	                comboBox_2.setModel(new DefaultComboBoxModel(new String[] {}));
+	            }
+	        }
+	    });
+	    
+	    
+	    
+	    
+	    JComboBox origen_1 = new JComboBox();
+		
+		JButton btnNewButton = new JButton("CALCULAR");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String selectedOption = (String) comboBox.getSelectedItem();
+		        double valor = Double.parseDouble(textField.getText());
+		        String monedaOrigen = (String) origen_1.getSelectedItem();
+		        String monedaDestino = "";
+
+		        if (selectedOption.equals("Conversor de temperatura")) {
+		            // Código del conversor de temperatura
+		            // ...
+		        } else if (selectedOption.equals("Conversor de monedas")) {
+		            monedaDestino = "USD";  // La conversión se realizará a USD
+		        } else {
+		            JOptionPane.showMessageDialog(null, "Seleccione una opción válida");
+		            return;
+		        }
+
+		        double resultado = conversor_monedas.convertirMonedas(valor, monedaOrigen, monedaDestino);
+
+				
+				
+				
+				/*
+				// Obtener el valor ingresado
+			    String valorTexto = textField.getText();
+
+			    // Validar que se haya ingresado un número válido
+			    double valor;
+			    try {
+			        valor = Double.parseDouble(valorTexto);
+			    } catch (NumberFormatException ex) {
+			        JOptionPane.showMessageDialog(null, "Ingrese un valor numérico válido");
+			        return; // Salir del método
+			    }
+
+			    // Obtener la moneda seleccionada en el comboBox_1
+			    String moneda = (String) destino.getSelectedItem();
+
+			    // Realizar la conversión a la moneda seleccionada
+			    double resultado = 0.0;
+			    switch (moneda) {
+			        case "USD":
+			            // Conversión a dólares
+			            resultado = valor / 3.14;
+			            break;
+			        case "EUR":
+			            // Conversión a euros
+			            resultado = valor / 3.99; // Tasa de cambio de dólares a euros
+			            break;
+			        case "GBP":
+			            // Conversión a libras esterlinas
+			            resultado = valor / 4.59; // Tasa de cambio de dólares a libras esterlinas
+			            break;
+			        case "CHF":
+			            // Conversión a francos suizos
+			            resultado = valor / 4.10; // Tasa de cambio de dólares a francos suizos
+			            break;
+			        default:
+			            JOptionPane.showMessageDialog(null, "Moneda no válida");
+			            return; // Salir del método
+			    }
+
+			 // Formatear el resultado a dos decimales
+			    DecimalFormat decimalFormat = new DecimalFormat("#.##");
+			    String resultadoFormateado = decimalFormat.format(resultado);
+			    
+			    // Mostrar el resultado
+			    JOptionPane.showMessageDialog(null, valor + " nuevos soles equivale a " + resultadoFormateado + " " + moneda);*/
+			}
+		});
+		btnNewButton.setBounds(119, 198, 89, 23);
+		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("SALIR");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				 int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro?", "Alerta!",
+						 JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+				 if (resp == JOptionPane.YES_OPTION) {
+			            JOptionPane.showMessageDialog(null, "Programa terminado");
+			            System.exit(0);
+			        } else if (resp == JOptionPane.NO_OPTION) {
+			            // Realizar alguna acción adicional si se selecciona "No"
+			            // O simplemente no hacer nada y continuar en el programa
+			        }}
+			
+		});btnNewButton_1.setBounds(262,198,89,23);contentPane.add(btnNewButton_1);
+
+	textField=new JTextField();textField.setBounds(74,101,67,20);contentPane.add(textField);textField.setColumns(10);
+
+	JLabel lblNewLabel_1 = new JLabel("CONVERSOR");lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);lblNewLabel_1.setFont(new Font("Tahoma",Font.PLAIN,15));lblNewLabel_1.setBounds(151,11,130,30);contentPane.add(lblNewLabel_1);
+JComboBox comboBox_1 = new JComboBox();
+comboBox_1.setBounds(144, 100, 64, 22);
+contentPane.add(comboBox_1);
+}};

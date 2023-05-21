@@ -1,0 +1,44 @@
+package Conversor ;
+
+public class conversor_monedas {
+
+	 public static double convertirMonedas(double valor, String monedaOrigen, String monedaDestino) {
+	        double resultado = 0.0;
+
+	        if (monedaOrigen.equals("USD")) {
+	            if (monedaDestino.equals("EUR")) {
+	                resultado = valor * 0.85;
+	            } else if (monedaDestino.equals("GBP")) {
+	                resultado = valor * 0.72;
+	            } else if (monedaDestino.equals("CHF")) {
+	                resultado = valor * 0.92;
+	            }
+	        } else if (monedaOrigen.equals("EUR")) {
+	            if (monedaDestino.equals("USD")) {
+	                resultado = valor * 1.18;
+	            } else if (monedaDestino.equals("GBP")) {
+	                resultado = valor * 0.85;
+	            } else if (monedaDestino.equals("CHF")) {
+	                resultado = valor * 1.09;
+	            }
+	        } else if (monedaOrigen.equals("GBP")) {
+	            if (monedaDestino.equals("USD")) {
+	                resultado = valor * 1.39;
+	            } else if (monedaDestino.equals("EUR")) {
+	                resultado = valor * 1.17;
+	            } else if (monedaDestino.equals("CHF")) {
+	                resultado = valor * 1.28;
+	            }
+	        } else if (monedaOrigen.equals("CHF")) {
+	            if (monedaDestino.equals("USD")) {
+	                resultado = valor * 1.09;
+	            } else if (monedaDestino.equals("EUR")) {
+	                resultado = valor * 0.92;
+	            } else if (monedaDestino.equals("GBP")) {
+	                resultado = valor * 0.78;
+	            }
+	        }
+
+	        return resultado;
+	    }
+	}

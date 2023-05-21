@@ -1,0 +1,32 @@
+package Conversor;
+
+public class conversor_temperatura {
+
+	  public static double convertirTemperatura(double valor, String tipoOrigen, String tipoDestino) {
+	        double resultado = 0.0;
+
+	        if (tipoOrigen.equals("Celsius")) {
+	            if (tipoDestino.equals("Fahrenheit")) {
+	                resultado = (valor * 9 / 5) + 32;
+	            } else if (tipoDestino.equals("Kelvin")) {
+	                resultado = valor + 273.15;
+	            }
+	        } else if (tipoOrigen.equals("Fahrenheit")) {
+	            if (tipoDestino.equals("Celsius")) {
+	                resultado = (valor - 32) * 5 / 9;
+	            } else if (tipoDestino.equals("Kelvin")) {
+	                resultado = (valor + 459.67) * 5 / 9;
+	            }
+	        } else if (tipoOrigen.equals("Kelvin")) {
+	            if (tipoDestino.equals("Celsius")) {
+	                resultado = valor - 273.15;
+	            } else if (tipoDestino.equals("Fahrenheit")) {
+	                resultado = (valor * 9 / 5) - 459.67;
+	            }
+	        }
+
+	        return resultado;
+	    }
+	}
+	
+

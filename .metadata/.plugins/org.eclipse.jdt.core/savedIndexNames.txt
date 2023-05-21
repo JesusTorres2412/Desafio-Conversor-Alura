@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+C:\Users\Jechumon\Desktop\Desafio - Conversor Alura\.metadata\.plugins\org.eclipse.jdt.core
+2023263072.index
+1865797976.index
+3901611290.index

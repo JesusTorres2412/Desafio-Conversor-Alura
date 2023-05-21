@@ -1,0 +1,13 @@
+package Conversor;
+
+import javax.swing.JOptionPane;
+
+public class Conversor {
+
+	public static void main(String[] args) {
+		object[] options = {"Conversor de divisas", "conversor de temperatura", "Salir" };
+		int elegir = JOptionPane.showOptionDialog(null, message:"Que quieres realizar?","conversor", JOptionPane.DEFAULT_OPTION,
+				JOptionPane.PLAIN_MESSAGE,icon:null,options,options[0]);
+	}
+	
+}

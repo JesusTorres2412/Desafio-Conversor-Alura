@@ -1,0 +1,39 @@
+package Conversor;
+
+import java.text.DecimalFormat;
+
+import javax.swing.JOptionPane;
+
+public class conversor_temperatura {
+
+	   public static double convertirTemperatura(double valor, String temperatura1, String temperatura2) {
+		        double resultado = 0.0;
+
+		        if (temperatura1.equals("Celsius")) {
+		            if (temperatura2.equals("Fahrenheit")) {
+		                resultado = (valor * 9 / 5) + 32;
+		            } else if (temperatura2.equals("Kelvin")) {
+		                resultado = valor + 273.15;
+		            }
+		        } else if (temperatura1.equals("Fahrenheit")) {
+		            if (temperatura2.equals("Celsius")) {
+		                resultado = (valor - 32) * 5 / 9;
+		            } else if (temperatura2.equals("Kelvin")) {
+		                resultado = (valor + 459.67) * 5 / 9;
+		            }
+		        } else if (temperatura1.equals("Kelvin")) {
+		            if (temperatura2.equals("Celsius")) {
+		                resultado = valor - 273.15;
+		            } else if (temperatura2.equals("Fahrenheit")) {
+		                resultado = (valor * 9 / 5) - 459.67;
+		            }
+		        }
+	        
+		    
+
+		  DecimalFormat decimalFormat = new DecimalFormat("#.##");
+			String resultadoFormateado = decimalFormat.format(resultado);
+
+			// Mostrar el resultado
+			JOptionPane.showMessageDialog(null, valor + temperatura1 + "es: " + resultadoFormateado + "" + temperatura2);
+			return resultado;	}}
